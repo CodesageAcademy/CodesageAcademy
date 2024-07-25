@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ module }} MCQ Test - CodeSage Academy</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container header">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo1.png') }}" alt="CodeSage Academy Logo">
+            </div>
+            <span class="menu-toggle">&#9776;</span>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('tutorials') }}">Tutorials</a></li>
+                    <li><a href="{{ url_for('Tests') }}">MCQ Tests</a></li>
+                    <li><a href="{{ url_for('resources') }}">Resources</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="mcqcontainer">
+            <h1 id="mcqid">{{ module }} MCQ Test</h1>
+            <form action="{{ url_for('submit', language=language, module=module) }}" method="POST">
+                {% for question in questions %}
+                <div class="question">
+                    <p>{{ loop.index }}. {{ question[2] }}</p>
+                    <div class="options">
+                        <label><input type="radio" name="{{ question[0] }}" value="1"> {{ question[3] }}</label>
+                        <label><input type="radio" name="{{ question[0] }}" value="2"> {{ question[4] }}</label>
+                        <label><input type="radio" name="{{ question[0] }}" value="3"> {{ question[5] }}</label>
+                        <label><input type="radio" name="{{ question[0] }}" value="4"> {{ question[6] }}</label>
+                    </div>
+                </div>
+                {% endfor %}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 CodeSage Academy</p>
+    </footer>
+    <script>
+        // JavaScript for toggling the mobile menu
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+    </script>
+</body>
+</html>

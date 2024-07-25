@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='tutorials_Content_style.css') }}">
+    <title>Introduction to Python - CodeSage Academy</title>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo1.png') }}" alt="CodeSage Academy Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('tutorials') }}">Tutorials</a></li>
+                <li><a href="{{ url_for('Tests') }}">MCQ Tests</a></li>
+                <li><a href="{{ url_for('resources') }}">Resources</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="tutorial-content">
+        <h1>Introduction to Python</h1>
+        <div id="intro_to_py">
+            <h2>Overview</h2>
+            <p>Python is a high-level, interpreted programming language known for its simplicity and readability. It supports multiple programming paradigms, including procedural, object-oriented, and functional programming. Python is widely used in web development, data analysis, artificial intelligence, scientific computing, and more.</p>
+        </div>
+        
+        <div id="intro_to_py">
+            <h2>Installation</h2>
+            <p>To install Python, follow these steps:</p>
+            <ol>
+                <li>Go to the official Python website: <a href="https://www.python.org/" target="_blank">python.org</a></li>
+                <li>Download the latest version of Python for your operating system.</li>
+                <li>Run the installer and follow the instructions.</li>
+                <li>Verify the installation by opening a terminal or command prompt and typing <code>python --version</code>.</li>
+            </ol>
+        </div>
+        
+        <div id="intro_to_py">
+            <h2>Basic Syntax</h2>
+            <p>Python syntax is designed to be readable and straightforward. Here are a few key points:</p>
+            <ul>
+                <li>Python uses indentation to define code blocks.</li>
+                <li>Statements end with a newline, not a semicolon.</li>
+                <li>Comments are written with a hash symbol (<code>#</code>).</li>
+            </ul>
+            <pre><code>
+                # This is a comment
+                print("Hello, World!")  # Output: Hello, World!
+            </code></pre>
+        </div>
+        
+        <div id="intro_to_py">
+            <h2>Variables</h2>
+            <p>Variables in Python are created when you assign a value to them. You do not need to declare the type of a variable explicitly.</p>
+            <pre><code>
+                x = 5
+                y = "Hello, World!"
+                print(x)  # Output: 5
+                print(y)  # Output: Hello, World!
+            </code></pre>
+        </div>
+        
+        <div id="intro_to_py">
+            <h2>Data Types</h2>
+            <p>Python has several built-in data types, including:</p>
+            <ul>
+                <li><strong>int:</strong> Integer numbers</li>
+                <li><strong>float:</strong> Floating-point numbers</li>
+                <li><strong>str:</strong> Strings</li>
+                <li><strong>list:</strong> Ordered collections of items</li>
+                <li><strong>dict:</strong> Key-value pairs</li>
+            </ul>
+            <pre><code>
+            # Examples of data types
+            a = 10        # int
+            b = 3.14      # float
+            c = "Python"  # str
+            d = [1, 2, 3] # list
+            e = {"key": "value"}  # dict
+
+            print(type(a))  # Output: <class 'int'>
+            print(type(b))  # Output: <class 'float'>
+            print(type(c))  # Output: <class 'str'>
+            print(type(d))  # Output: <class 'list'>
+            print(type(e))  # Output: <class 'dict'></code></pre>
+        </div>
+        
+        <div id="intro_to_py">
+            <h2>Example Program</h2>
+            <p>Here is a simple Python program that adds two numbers and prints the result:</p>
+            <pre>
+                <code>
+                    # Add two numbers
+                    num1 = 10
+                    num2 = 5
+
+                    # Calculate the sum
+                    sum = num1 + num2
+
+                    # Print the result
+                    print("The sum is", sum)  # Output: The sum is 15
+                </code>
+            </pre>
+        </div>
+        <div class="navigation-buttons">
+            <a href="{{ url_for('tutorials') }}" class="button">Back</a>
+            <a href="#" class="button">Next</a>
+        </div>      
+    </div>
+   
+    
+
+    <footer>
+        &copy; 2024 CodeSage Academy
+    </footer>
+</body>
+</html>

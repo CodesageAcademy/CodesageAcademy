@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Resources - CodeSage Academy</title>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo1.png') }}" alt="CodeSage Academy Logo">
+        </div>
+        <span class="menu-toggle">&#9776;</span>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('tutorials') }}">Tutorials</a></li>
+                <li><a href="{{ url_for('Tests') }}">MCQ Tests</a></li>
+                <li><a href="{{ url_for('resources') }}">Resources</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="resources-section">
+        <h1>Resources</h1>
+        <div class="resource-category">
+            <h2>Online Courses and Tutorials</h2>
+            <ul>
+                <li><a href="https://www.coursera.org/" target="_blank">Coursera</a></li>
+                <li><a href="https://www.udemy.com/" target="_blank">Udemy</a></li>
+                <li><a href="https://www.edx.org/" target="_blank">edX</a></li>
+                <li><a href="https://www.freecodecamp.org/" target="_blank">freeCodeCamp</a></li>
+            </ul>
+        </div>
+
+        <div class="resource-category">
+            <h2>Documentation</h2>
+            <ul>
+                <li><a href="https://docs.python.org/3/" target="_blank">Python Documentation</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">JavaScript Documentation</a></li>
+                <li><a href="https://docs.oracle.com/javase/8/docs/" target="_blank">Java Documentation</a></li>
+            </ul>
+        </div>
+
+        <div class="resource-category">
+            <h2>Books and E-books</h2>
+            <ul>
+                <li><a href="https://automatetheboringstuff.com/" target="_blank">Automate the Boring Stuff with Python</a></li>
+                <li><a href="https://eloquentjavascript.net/" target="_blank">Eloquent JavaScript</a></li>
+                <li><a href="https://java-design-patterns.com/" target="_blank">Java Design Patterns</a></li>
+            </ul>
+        </div>
+
+        <div class="resource-category">
+            <h2>Coding Challenges</h2>
+            <ul>
+                <li><a href="https://www.hackerrank.com/" target="_blank">HackerRank</a></li>
+                <li><a href="https://www.codewars.com/" target="_blank">Codewars</a></li>
+                <li><a href="https://leetcode.com/" target="_blank">LeetCode</a></li>
+            </ul>
+        </div>
+
+        <div class="resource-category">
+            <h2>Development Tools</h2>
+            <ul>
+                <li><a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a></li>
+                <li><a href="https://www.jetbrains.com/idea/" target="_blank">IntelliJ IDEA</a></li>
+                <li><a href="https://www.sublimetext.com/" target="_blank">Sublime Text</a></li>
+            </ul>
+        </div>
+
+        <div class="resource-category">
+            <h2>Community and Forums</h2>
+            <ul>
+                <li><a href="https://stackoverflow.com/" target="_blank">Stack Overflow</a></li>
+                <li><a href="https://www.reddit.com/r/learnprogramming/" target="_blank">Reddit - Learn Programming</a></li>
+                <li><a href="https://www.geeksforgeeks.org/" target="_blank">GeeksforGeeks</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 CodeSage Academy
+    </footer>
+    <script>
+        // JavaScript for toggling the mobile menu
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+    </script>
+</body>
+</html>

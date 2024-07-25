@@ -1,0 +1,137 @@
+from flask import Flask, render_template, request, redirect, url_for
+import sqlite3
+
+app = Flask(__name__)
+
+# Database setup
+def init_db():
+    with sqlite3.connect('mcq.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS questions (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                module TEXT NOT NULL,
+                question TEXT NOT NULL,
+                option1 TEXT NOT NULL,
+                option2 TEXT NOT NULL,
+                option3 TEXT NOT NULL,
+                option4 TEXT NOT NULL,
+                correct_option INTEGER NOT NULL
+            )
+        ''')
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS contacts (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                email TEXT NOT NULL,
+                message TEXT NOT NULL
+            )
+        ''')
+        conn.commit()
+
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+@app.route('/mcq/<language>')
+def language_tests(language):
+    modules = {
+        'Python': ['Numpy', 'Pandas', 'Matplotlib'],
+        'JavaScript': ['Basics', 'DOM', 'ES6'],
+        'Java': ['OOP', 'Collections', 'Streams'],
+        'C++':['Pointer']
+    }
+    return render_template('language_tests.html', language=language, modules=modules.get(language, []))
+
+@app.route('/mcq/<language>/<module>')
+def mcq_test(language, module):
+    with sqlite3.connect('mcq.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM questions WHERE module = ?', (module,))
+        questions = cursor.fetchall()
+    return render_template('mcq_test.html', questions=questions, language=language, module=module)
+
+@app.route('/tutorials')
+def tutorials():
+    # You can add logic to fetch tutorial data from a database if needed
+    return render_template('tutorials.html')
+@app.route('/tutorials/introduction-to-python')
+def introduction_to_python():
+    return render_template('Tutorials/introduction_to_python.html')
+
+@app.route('/submit/<language>/<module>', methods=['POST'])
+def submit(language, module):
+    if request.method == 'POST':
+        answers = request.form.to_dict()
+        score = 0
+        total = len(answers)
+        wrong_answers = []
+
+        with sqlite3.connect('mcq.db') as conn:
+            cursor = conn.cursor()
+            for question_id, answer in answers.items():
+                cursor.execute('SELECT question, correct_option, option1, option2, option3, option4 FROM questions WHERE id = ?', (question_id,))
+                question_data = cursor.fetchone()
+                question, correct_option, option1, option2, option3, option4 = question_data
+                correct_answer = [option1, option2, option3, option4][correct_option - 1]
+                user_answer = [option1, option2, option3, option4][int(answer) - 1]
+
+                if int(answer) == correct_option:
+                    score += 1
+                else:
+                    wrong_answers.append((question, user_answer, correct_answer))
+
+        return render_template('result.html', score=score, total=total, language=language, module=module, wrong_answers=wrong_answers)
+@app.route('/Tests')
+def Tests():
+    return render_template('Tests.html')
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+@app.route('/resources')
+def resources():
+    return render_template('resources.html')
+
+
+@app.route('/submit_contact', methods=['POST'])
+def submit_contact():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        message = request.form['message']
+        
+        with sqlite3.connect('mcq.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute('INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)', (name, email, message))
+            conn.commit()
+        return render_template('contact.html', success=True)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        userid = request.form['userid']
+        password = request.form['password']
+        # Implement authentication logic here
+        if userid == 'admin' and password == 'password':  # Placeholder logic
+            flash('Login successful!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('Invalid credentials, please try again.', 'danger')
+            return redirect(url_for('login'))
+    return render_template('LOGIN/login.html')
+
+@app.route('/forgot_password')
+def forgot_password():
+    return render_template('LOGIN/forgot_password.html')
+
+@app.route('/register')
+def register():
+    return render_template('LOGIN/register.html')
+
+if __name__ == '__main__':
+    init_db()
+    app.run(debug=True)

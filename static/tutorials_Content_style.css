@@ -1,0 +1,81 @@
+.tutorial-content {
+    padding: 20px;
+    padding-top: 80px;
+}
+
+.tutorial-content h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    position: sticky; /* Make the h1 sticky */
+    top: 60px; /* Adjust based on header height */
+    background: white;
+    padding: 10px;
+    z-index: 1000;
+
+}
+#intro_to_py{
+    max-width: 800px;
+    margin: 0 auto 20px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tutorial-content h2 {
+    color: #555;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.tutorial-content p {
+    margin: 10px 0;
+}
+
+.tutorial-content ul {
+    margin: 10px 0 20px 20px;
+}
+
+.tutorial-content ul li {
+    margin-bottom: 5px;
+}
+
+.tutorial-content ol {
+    margin: 10px 0 20px 20px;
+}
+
+.tutorial-content ol li {
+    margin-bottom: 5px;
+}
+
+.tutorial-content pre {
+    background: #f4f4f4;
+    padding: 10px;
+    border: 1px solid #ddd;
+    overflow-x: auto;
+}
+
+.tutorial-content code {
+    font-family: Consolas, monospace;
+}
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.navigation-buttons .button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.navigation-buttons .button:hover {
+    background-color: #555;
+}
